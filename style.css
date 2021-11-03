@@ -218,6 +218,7 @@ h1 {
   border: 1px solid gray;
   min-height: 300px;
   user-select: all;
+  margin: 0 auto;
   margin-bottom: 100px;
 }
 
