@@ -109,7 +109,7 @@ function getImport(font) {
     let output = `@font-face {
     font-family: '${name}';
     font-style: '${fontStyle ? fontStyle.toLowerCase() : 'normal'}';
-    font-weight: '${fontWeight && weightNumbers[fontWeight] ? weightNumbers[fontWeight] : 'regular'}';${checkIE9(font,formats)}
+    font-weight: ${fontWeight && weightNumbers[fontWeight] ? weightNumbers[fontWeight] : "'regular'"};${checkIE9(font,formats)}
     src: local(''),`
     for (const format of formats) {
         output += `\n        ${getFontUrl(font,format)}${formats.slice().pop() === format ? ';\n}' : ','}`
