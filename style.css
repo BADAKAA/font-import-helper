@@ -171,6 +171,42 @@ form button {
   top: 100%;
 }
 
+.weight-container > *:nth-child(2) {
+  font-weight: 200;
+}
+
+.weight-container > *:nth-child(3) {
+  font-weight: 300;
+}
+
+.weight-container > *:nth-child(4) {
+  font-weight: 400;
+}
+
+.weight-container > *:nth-child(5) {
+  font-weight: 500;
+}
+
+.weight-container > *:nth-child(6) {
+  font-weight: 600;
+}
+
+.weight-container > *:nth-child(7) {
+  font-weight: 700;
+}
+
+.weight-container > *:nth-child(8) {
+  font-weight: 800;
+}
+
+.weight-container > *:nth-child(9) {
+  font-weight: 900;
+}
+
+.weight-container > *:nth-child(10) {
+  font-weight: 1000;
+}
+
 body {
   margin: 0;
   padding-left: 5rem;

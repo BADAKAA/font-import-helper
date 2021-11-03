@@ -26,3 +26,10 @@ form {
         top:100%;
     }
 }
+
+@for $i from 1 through 9 {
+    .weight-container > *:nth-child(#{$i+1}) {
+        font-weight: ($i+1)*100;
+    }
+  }
+  

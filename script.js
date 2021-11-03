@@ -3,6 +3,7 @@ interface font {
     name:string,
     formats:string[],
     prefix:string,
+    styleSeperator?:string,
     fileName:string,
     fontWeight?:string,
     fontStyle?:string
@@ -51,7 +52,7 @@ function getFormats() {
     }
     return formats;
 }
-function getWeights() {
+function getFontTypes() {
     const weights = [];
     for (const input of weightInputs) {
         if (input.checked) weights.push(input.id);
@@ -65,6 +66,7 @@ function isValid(font) {
 
 function getFormatName(abbr) {
     if (abbr === "ttf") return 'truetype';
+    if (abbr === "eot") return 'embedded-opentype';
     return abbr;
 }
 function error(message) {
@@ -77,42 +79,46 @@ function parsePrefix(prefix, font) {
     if (prefix.split('{').length > 2 || prefix.split('}').length > 2) return error('The prefix contains too many curly boys.');
     return prefix.replace('{name}', font.fileName);
 }
+
+function getFormatSuffix(format,fontName) {
+    if (format==="eot") return '?#iefix';
+    if (format==="svg") return '#' + (fontName.includes(' ') ? fontName.replaceAll(' ', '') : fontName);
+    return '';
+}
+function getFontUrl(font,format,disableSuffix) {
+    const { name, fileName, prefix,styleSeparator: separator, fontStyle } = font;
+    return `url('${parsePrefix(prefix, font)}${fileName}${fontStyle ? separator + fontStyle : ''}.${format}${disableSuffix ? '' : getFormatSuffix(format,name)}') format('${getFormatName(format)}')`;
+}
+const checkIE9 = (font, formats)=>formats.includes('eot') ? '\n    src: '+getFontUrl(font,'eot',true)+',':'';
+
 function getImport(font) {
-    const { name, formats, fileName, prefix,fontStyleSeparator } = font;
-    let {fontWeight} = font;
-    let fontStyle = null;
-
-    if (fontWeight && fontWeight.includes("-")) {
-        const parts= fontWeight.split('-');
-        fontWeight = parts[0];
-        fontStyle = parts[1];
-    }
-
+    const { name, formats, fontStyle, fontWeight } = font;
     let output = `@font-face {
-    font-family: '${name}';
-    font-style: '${fontStyle || 'normal'}';
-    font-weight: '${fontWeight || 'regular'};
+    font-family: '${name}',
+    font-style: '${fontStyle || 'normal'}',
+    font-weight: '${fontWeight || 'regular'},${checkIE9(font,formats)}
     src: local(''),`
     for (const format of formats) {
-        output += `\n    url('${parsePrefix(prefix, font)}${fileName}${fontStyle ? fontStyleSeparator + fontStyle : ''}.${format}') format('${getFormatName(format)}')${formats.slice().pop() === format ? ';\n}' : ','}`
+        output += `\n    ${getFontUrl(font,format)}${formats.slice().pop() === format ? ';\n}' : ','}`
     }
     return output;
 }
 
-
+const getWeight = (fontType) => fontType && fontType.includes("-") ? fontType.split('-')[0]:fontType;
+const getStyle = (fontType) => fontType && fontType.includes("-") ? fontType.split('-')[1]:null;
 
 function updateOutput() {
     const fonts = [];
-    
-    for(const weight of getWeights()) {
+    for(const fontType of getFontTypes()) {
         fonts.push(
             {
                 name: nameInput.value,
                 fileName: fileNameInput.value,
                 prefix: prefixInput.value,
                 formats: getFormats(),
-                fontWeight:weight,
-                fontStyleSeparator:separatorInput.value
+                fontWeight:getWeight(fontType),
+                fontStyle: getStyle(fontType),
+                styleSeparator:separatorInput.value
             }
         )
     }
