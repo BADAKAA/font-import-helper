@@ -9,6 +9,19 @@ interface font {
     fontStyle?:string
 }
 */
+
+const weightNumbers = {
+    ExtraLight:100,
+    Light:200,
+    Thin:300,
+    Regular:400,
+    Medium:500,
+    SemiBold:600,
+    Bold:700,
+    ExtraBold:800,
+    Black:900,
+}
+
 function copy(text) {
     const element = document.createElement("textarea");
     document.body.appendChild(element);
@@ -96,7 +109,7 @@ function getImport(font) {
     let output = `@font-face {
     font-family: '${name}';
     font-style: '${fontStyle ? fontStyle.toLowerCase() : 'normal'}';
-    font-weight: '${fontWeight ? fontWeight.toLowerCase() : 'regular'}';${checkIE9(font,formats)}
+    font-weight: '${fontWeight && weightNumbers[fontWeight] ? weightNumbers[fontWeight] : 'regular'}';${checkIE9(font,formats)}
     src: local(''),`
     for (const format of formats) {
         output += `\n        ${getFontUrl(font,format)}${formats.slice().pop() === format ? ';\n}' : ','}`
