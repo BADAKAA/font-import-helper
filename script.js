@@ -89,17 +89,17 @@ function getFontUrl(font,format,disableSuffix) {
     const { name, fileName, prefix,styleSeparator: separator, fontStyle } = font;
     return `url('${parsePrefix(prefix, font)}${fileName}${fontStyle ? separator + fontStyle : ''}.${format}${disableSuffix ? '' : getFormatSuffix(format,name)}') format('${getFormatName(format)}')`;
 }
-const checkIE9 = (font, formats)=>formats.includes('eot') ? '\n    src: '+getFontUrl(font,'eot',true)+',':'';
+const checkIE9 = (font, formats)=>formats.includes('eot') ? '\n    src: '+getFontUrl(font,'eot',true)+';':'';
 
 function getImport(font) {
     const { name, formats, fontStyle, fontWeight } = font;
     let output = `@font-face {
-    font-family: '${name}',
-    font-style: '${fontStyle || 'normal'}',
-    font-weight: '${fontWeight || 'regular'},${checkIE9(font,formats)}
+    font-family: '${name}';
+    font-style: '${fontStyle ? fontStyle.toLowerCase() : 'normal'}';
+    font-weight: '${fontWeight ? fontWeight.toLowerCase() : 'regular'}';${checkIE9(font,formats)}
     src: local(''),`
     for (const format of formats) {
-        output += `\n    ${getFontUrl(font,format)}${formats.slice().pop() === format ? ';\n}' : ','}`
+        output += `\n        ${getFontUrl(font,format)}${formats.slice().pop() === format ? ';\n}' : ','}`
     }
     return output;
 }
