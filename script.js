@@ -44,8 +44,10 @@ $('#updateButton').addEventListener('click', () => {
 
 const nameInput = $('#name');
 const fileNameInput = $('#file');
-const lowercaseCheckbox = $('#lowercase');
+const fileLowercaseCheckbox = $('#file-lowercase');
 const syncNameCheckbox = $('#sync-name');
+
+const styleLowercaseCheckbox = $('#style-lowercase');
 
 const prefixInput = $('#prefix');
 const separatorInput = $('#separator');
@@ -100,7 +102,7 @@ function getFormatSuffix(format,fontName) {
 }
 function getFontUrl(font,format,disableSuffix) {
     const { name, fileName, prefix,styleSeparator: separator, fontStyle } = font;
-    return `url('${parsePrefix(prefix, font)}${fileName}${fontStyle ? separator + fontStyle : ''}.${format}${disableSuffix ? '' : getFormatSuffix(format,name)}') format('${getFormatName(format)}')`;
+    return `url('${parsePrefix(prefix, font)}${fileName}${fontStyle ? separator + (styleLowercaseCheckbox.checked ? fontStyle.toLowerCase() :fontStyle) : ''}.${format}${disableSuffix ? '' : getFormatSuffix(format,name)}') format('${getFormatName(format)}')`;
 }
 const checkIE9 = (font, formats)=>formats.includes('eot') ? '\n    src: '+getFontUrl(font,'eot',true)+';':'';
 
@@ -161,7 +163,7 @@ function copyOutput() {
 let syncFileName = true;
 nameInput.addEventListener('input', fontNameChange);
 fileNameInput.addEventListener('input', () => {
-    syncFileName = true;
+    syncFileName = false;
     syncNameCheckbox.checked = false;
 });
 syncNameCheckbox.addEventListener('change',() => {
@@ -169,11 +171,11 @@ syncNameCheckbox.addEventListener('change',() => {
     syncFileName=value;
     document.cookie = 'syncNames='+value;
 });
-lowercaseCheckbox.addEventListener('change',()=>document.cookie = 'lowercase='+lowercaseCheckbox.checked)
+fileLowercaseCheckbox.addEventListener('change',()=>document.cookie = 'lowercase='+fileLowercaseCheckbox.checked)
 function fontNameChange() {
     if (!syncFileName) return;
     let parsedName =  nameInput.value.replace(" ", "-");
-    if (lowercaseCheckbox.checked) parsedName = parsedName.toLowerCase();
+    if (fileLowercaseCheckbox.checked) parsedName = parsedName.toLowerCase();
     fileNameInput.value = parsedName;
 }
 
@@ -186,8 +188,11 @@ function getCookie(name) {
 const parseBool = (string) => string && string === 'true'; 
 
 function restorePreferences() {
-    console.log(getCookie('syncNames') );
-    if (getCookie('syncNames') !== undefined) syncNameCheckbox.checked = parseBool(getCookie('syncNames'));
-    if (getCookie('lowercase') !== undefined) lowercaseCheckbox.checked = parseBool(getCookie('lowercase'));
+    const syncPreference = parseBool(getCookie('syncNames'));
+    if (getCookie('syncNames') !== undefined) {
+        syncNameCheckbox.checked = syncPreference;
+        syncFileName = syncPreference;
+    }
+    if (getCookie('lowercase') !== undefined) fileLowercaseCheckbox.checked = parseBool(getCookie('lowercase'));
 }
 restorePreferences();
