@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Import Helper</title>
+    
+    <link rel="stylesheet" href="./style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <h1>Font Import Helper</h1>
+    <p id="error"></p>
+    <form action="#form" id="form">
+        <div>
+            <h2>Details</h2>
+            <div class="row">
+                <div class="group">      
+                    <input type="text" id="name" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Font Name</label>
+                </div>
+                <label class="check">
+                    sync filename
+                    <input type="checkbox" id="sync-name" checked="true">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="row">
+                <div class="group">      
+                    <input type="text" id="file" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>File Name</label>
+                </div>
+                <label class="check">
+                    lowercase
+                    <input type="checkbox" id="lowercase">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="group">      
+                <input type="text" id="separator" placeholder='e.g. "-"'>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Style Separator</label>
+            </div>
+            <div class="group">      
+                <input type="text" id="prefix" value='./fonts/{name}/'>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Prefix</label>
+            </div>
+        </div>
+        <div>
+            <h2>Weights</h2>
+            <label class="check">
+                ExtraLight
+                <input type="checkbox" class="weight" id="ExtraLight">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                Light
+                <input type="checkbox" class="weight" id="Light">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                Thin
+                <input type="checkbox" class="weight" id="Thin">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                Regular
+                <input type="checkbox" checked="true" class="weight" id="Regular">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                Medium
+                <input type="checkbox" class="weight" id="Medium">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                SemiBold
+                <input type="checkbox" class="weight" id="SemiBold">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                Bold
+                <input type="checkbox" class="weight" id="Bold">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                ExtraBold
+                <input type="checkbox" class="weight" id="ExtraBold">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                Black
+                <input type="checkbox" class="weight" id="Black">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="italic">
+            <h2>Italic</h2>
+            <label class="check">
+                ExtraLightItalic
+                <input type="checkbox" class="weight" id="ExtraLight">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                LightItalic
+                <input type="checkbox" class="weight" id="Light-Italic">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                ThinItalic
+                <input type="checkbox" class="weight" id="Thin-Italic">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                Italic
+                <input type="checkbox" class="weight" id="Regular-Italic">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                MediumItalic
+                <input type="checkbox" class="weight" id="Medium-Italic">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                SemiBoldItalic
+                <input type="checkbox" class="weight" id="SemiBold-Italic">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                BoldItalic
+                <input type="checkbox" class="weight" id="Bold-Italic">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                ExtraBoldItalic
+                <input type="checkbox" class="weight" id="ExtraBold-Italic">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                BlackItalic
+                <input type="checkbox" class="weight" id="Black-Italic">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div>
+            <h2>Formats</h2>
+            <label class="check">
+                .woff
+                <input type="checkbox" class="format" id="woff">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                .woff2
+                <input type="checkbox" class="format" id="woff2" checked="true">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <button type="submit" id="updateButton">Update</button>
+    </form>
+
+    <div class="output-container">
+        <pre id="output"></pre>
+        <i id="copy-icon" class="bi bi-clipboard-plus"></i>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

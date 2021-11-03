@@ -1,0 +1,75 @@
+@use 'variables' as *;
+@use 'checkbox';
+@use 'input';
+@use 'form';
+
+body {
+    margin: 0;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
+}
+label,#copy-icon,button  {
+    cursor: pointer;
+}
+.italic {
+    font-style: italic;
+}
+h1,h2,h3,h4,h5, button {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+h1 {
+    font-weight: 800;
+    font-size: 4rem;
+    text-align: center;
+    user-select: none;
+    margin-bottom: 0;
+}
+#error {
+    color: $secondary;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 2rem;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+
+.output-container {
+    position: relative;
+    max-width: 1000px;
+    border-radius: 5px;
+    background-color: var(--output-bg);
+    border: 1px solid gray;
+    min-height: 300px;
+    user-select: all;
+    margin-bottom: 100px;
+}
+#output {
+    padding: 1rem;
+    font-size: 1rem;
+}
+#copy-icon {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 2rem;
+    color: var(--secondary);
+    transition: transform 0.3s;
+}
+
+#copy-icon:hover:not(:active) {
+    transform: scale(1.1);
+}
+
+.row {
+    display: flex;
+    align-items: start;
+    label.check {
+        transform: scale(0.75);
+        color: darkgrey;
+        margin-left: 1rem;
+    }
+}

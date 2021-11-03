@@ -1,0 +1,11 @@
+{
+  "name": "font-import-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "w":"sass --watch ./style:./"
+  },
+  "author": "",
+  "license": "ISC"
+}

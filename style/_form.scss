@@ -1,0 +1,28 @@
+@use 'variables' as *;
+form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    & > * {
+        flex: 1 1 300px;
+    }
+    justify-content: center;
+    align-items: start;
+    margin-bottom: 80px;
+    position: relative;
+    button {
+        color: white;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        min-width: 200px;
+        border: none;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: light;
+        background-color: $highlight;
+        position: absolute;
+        width: 100%;
+        top:100%;
+    }
+}

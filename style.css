@@ -1,0 +1,252 @@
+:root {
+  --primary: #212738;
+  --secondary: #ff5a5f;
+  --output-bg: #eee;
+}
+
+/* Customize the label (the container) */
+.check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  transition: background-color 0.2s;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check input:checked ~ .checkmark {
+  background-color: #62bbc1;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+}
+
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* form starting stylings ------------------------------- */
+.group {
+  position: relative;
+  margin-bottom: 45px;
+  /* LABEL ======================================= */
+  /* active state */
+  /* BOTTOM BARS ================================= */
+  /* active state */
+}
+.group input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+.group input:focus {
+  outline: none;
+}
+.group label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.group input:focus ~ label, .group input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #62bbc1;
+}
+.group .bar {
+  position: relative;
+  display: block;
+  width: 300px;
+}
+.group .bar:before, .group .bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #62bbc1;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.group .bar:before {
+  left: 50%;
+}
+.group .bar:after {
+  right: 50%;
+}
+.group input:focus ~ .bar:before, .group input:focus ~ .bar:after {
+  width: 50%;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 80px;
+  position: relative;
+}
+form > * {
+  flex: 1 1 300px;
+}
+form button {
+  color: white;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  min-width: 200px;
+  border: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: light;
+  background-color: #62bbc1;
+  position: absolute;
+  width: 100%;
+  top: 100%;
+}
+
+body {
+  margin: 0;
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+body * {
+  font-family: "Roboto", sans-serif;
+}
+
+label, #copy-icon, button {
+  cursor: pointer;
+}
+
+.italic {
+  font-style: italic;
+}
+
+h1, h2, h3, h4, h5, button {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 4rem;
+  text-align: center;
+  user-select: none;
+  margin-bottom: 0;
+}
+
+#error {
+  color: #ff5a5f;
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 2rem;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+
+.output-container {
+  position: relative;
+  max-width: 1000px;
+  border-radius: 5px;
+  background-color: var(--output-bg);
+  border: 1px solid gray;
+  min-height: 300px;
+  user-select: all;
+  margin-bottom: 100px;
+}
+
+#output {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+#copy-icon {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: 2rem;
+  color: var(--secondary);
+  transition: transform 0.3s;
+}
+
+#copy-icon:hover:not(:active) {
+  transform: scale(1.1);
+}
+
+.row {
+  display: flex;
+  align-items: start;
+}
+.row label.check {
+  transform: scale(0.75);
+  color: darkgrey;
+  margin-left: 1rem;
+}
+
+/*# sourceMappingURL=style.css.map */
