@@ -96,7 +96,7 @@ function showMessage(message) {
     errorEl.textContent = '';
     successEl.textContent = message;
     clearTimeout(successTimer);
-    successTimer = setTimeout(() => successEl.textContent = '', 4000);
+    successTimer = setTimeout(() => successEl.textContent = '', 3000);
 }
 function parsePrefix(prefix, font) {
     if (!prefix.includes('{')) return prefix;
