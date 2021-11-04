@@ -26,6 +26,9 @@ form {
         top:100%;
     }
 }
+#details {
+    margin-bottom: 1.5rem;
+}
 
 @for $i from 1 through 9 {
     .weight-container > *:nth-child(#{$i+1}) {

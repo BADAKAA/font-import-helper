@@ -35,7 +35,9 @@ const $ = (query) => document.querySelector(query);
 const $all = (query) => document.querySelectorAll(query);
 
 let errorTimer = 0;
+let successTimer = 0;
 const errorEl = $('#error');
+const successEl = $('#success');
 
 const form = $('#form');
 $('#updateButton').addEventListener('click', () => {
@@ -86,8 +88,15 @@ function getFormatName(abbr) {
 }
 function error(message) {
     errorEl.textContent = message;
+    successEl.textContent = '';
     clearTimeout(errorTimer);
     errorTimer = setTimeout(() => errorEl.textContent = '', 4000);
+}
+function showMessage(message) {
+    errorEl.textContent = '';
+    successEl.textContent = message;
+    clearTimeout(successTimer);
+    successTimer = setTimeout(() => errorEl.textContent = '', 4000);
 }
 function parsePrefix(prefix, font) {
     if (!prefix.includes('{')) return prefix;
@@ -156,6 +165,7 @@ function copyOutput() {
     setTimeout(() => {
         copyIcon.classList.contains(copiedClass) && copyIcon.classList.replace(copiedClass, copyIconClass);
     }, 750);
+    !outputElement.textContent ? error('No text could be copied.') : showMessage('copied!');
 }
 
 
