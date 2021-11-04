@@ -5,10 +5,10 @@
 
 body {
     margin: 0;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: $body-padding;
+    padding-right: $body-padding;
     * {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Work Sans', 'Roboto', sans-serif;
     }
 }
 label,#copy-icon,button  {
@@ -18,14 +18,24 @@ label,#copy-icon,button  {
     font-style: italic;
 }
 h1,h2,h3,h4,h5, button {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Be Vietnam Pro', sans-serif;
 }
 h1 {
     font-weight: 800;
-    font-size: 4rem;
+    font-size: 3.5rem;
     text-align: center;
     user-select: none;
     margin-bottom: 0;
+    margin-top: 1.5rem;
+    margin-left: -1 * $body-padding;
+    margin-right: -1 * $body-padding;
+    @media screen and (max-width:1000px) {
+        font-size: 3rem;
+    }
+    @media screen and (max-width:600px) {
+        font-size: 1.6rem;
+        padding: 0;
+    }
 }
 #error {
     color: $secondary;
@@ -36,17 +46,25 @@ h1 {
     place-items: center;
     justify-content: center;
 }
+button {
+    opacity: 0.75;
+    transition: opacity 0.3s;
+    &:hover:not(:active) {
+        opacity: 1;
+        transition: none;
+    }
+}
 
 .output-container {
     position: relative;
     max-width: 1000px;
     border-radius: 5px;
     background-color: var(--output-bg);
-    border: 1px solid gray;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
     min-height: 300px;
     user-select: all;
-    margin: 0 auto;
-    margin-bottom: 100px;
+    margin: 100px auto;
+    margin-bottom: 50px;
 }
 #output {
     padding: 1rem;
@@ -73,5 +91,15 @@ h1 {
         transform: scale(0.75);
         color: darkgrey;
         margin-left: 1rem;
+    }
+    @media screen and (max-width:700px) {
+        flex-direction: column;
+        & > label.check {
+            margin-bottom: 2rem;
+            margin-left: auto;
+        }
+        & > *:first-child {
+            margin-bottom: 0;
+        }
     }
 }
