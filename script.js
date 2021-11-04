@@ -218,3 +218,25 @@ separatorInput.addEventListener('input',()=> {
         field.textContent = separatorInput.value;
     })
 })
+function resetPage() {
+    nameInput.value = '';
+    fileNameInput.value = '';
+    separatorInput.value = '';
+    prefixInput.value = './fonts/{name}/';
+}
+$('#reset-button').addEventListener('click',resetPage);
+
+
+function spin(el) {
+    console.log(el);
+    if (el.classList.contains('spinning')) el.classList.remove('spinning');
+    el.classList.add('spinning');
+    setTimeout(()=> {
+        if (el.classList.contains('spinning')) el.classList.remove('spinning');
+    },300)
+}
+
+const spinners = $all('.spin');
+for (const el of Array.from(spinners)) {
+    el.addEventListener('click',()=>spin(el));
+}

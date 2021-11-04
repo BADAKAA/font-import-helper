@@ -2,10 +2,30 @@ $highlight: #62bbc1;
 $checkbox-bg: $highlight;
 $secondary: #ff5a5f;
 $success: #b1cf5f;
-$body-padding: 5rem;
+$body-padding: 2rem;
+$body-padding-xl: 5rem;
 
+$breakpoint: 1000px;
 :root {
     --primary: #212738;
     --secondary: #ff5a5f;
     --output-bg: #eee;
+}
+
+@mixin body-padding {
+    padding-left: $body-padding;
+    padding-right: $body-padding;
+    @media screen and (min-width: $breakpoint) {
+        padding-left: $body-padding-xl;
+        padding-right: $body-padding-xl;
+    }
+}
+
+@mixin full-width {
+    padding-left: -1 * $body-padding;
+    padding-right: -1 * $body-padding;
+    @media screen and (min-width: $breakpoint) {
+        padding-left: -1 * $body-padding-xl;
+        padding-right: -1 * $body-padding-xl;
+    }
 }

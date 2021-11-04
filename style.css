@@ -97,6 +97,11 @@
   border: none;
   border-bottom: 1px solid #757575;
 }
+@media screen and (max-width: 600px) {
+  .group input {
+    width: 200px;
+  }
+}
 .group input:focus {
   outline: none;
 }
@@ -121,6 +126,11 @@
   position: relative;
   display: block;
   width: 300px;
+}
+@media screen and (max-width: 600px) {
+  .group .bar {
+    width: 200px;
+  }
 }
 .group .bar:before, .group .bar:after {
   content: "";
@@ -170,6 +180,9 @@ form button {
   width: 100%;
   top: 100%;
 }
+form div {
+  max-width: 100%;
+}
 
 #details {
   margin-bottom: 1.5rem;
@@ -211,16 +224,42 @@ form button {
   font-weight: 1000;
 }
 
+.grow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.grow:hover:not(:active) {
+  transform: scale(1.1);
+}
+
+.spinning {
+  animation: spin 0.2s ease-out;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
 body {
   margin: 0;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+@media screen and (min-width: 1000px) {
+  body {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 body * {
   font-family: "Work Sans", "Roboto", sans-serif;
 }
 
-label, #copy-icon, button {
+label, #copy-icon, button, #reset-button {
   cursor: pointer;
 }
 
@@ -239,8 +278,14 @@ h1 {
   user-select: none;
   margin-bottom: 0;
   margin-top: 1.5rem;
-  margin-left: -5rem;
-  margin-right: -5rem;
+  padding-left: -2rem;
+  padding-right: -2rem;
+}
+@media screen and (min-width: 1000px) {
+  h1 {
+    padding-left: -5rem;
+    padding-right: -5rem;
+  }
 }
 @media screen and (max-width: 1000px) {
   h1 {
@@ -249,8 +294,12 @@ h1 {
 }
 @media screen and (max-width: 600px) {
   h1 {
-    font-size: 1.6rem;
-    padding: 0;
+    font-size: 1.8rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 1.2rem;
   }
 }
 
@@ -297,6 +346,7 @@ button:hover:not(:active) {
   user-select: all;
   margin: 100px auto;
   margin-bottom: 50px;
+  word-wrap: break-word;
 }
 
 #output {
@@ -316,6 +366,11 @@ button:hover:not(:active) {
 #copy-icon:hover:not(:active) {
   transform: scale(1.1);
   transition: none;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .row {

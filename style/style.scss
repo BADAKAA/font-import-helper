@@ -2,16 +2,16 @@
 @use 'checkbox';
 @use 'input';
 @use 'form';
+@use 'animations';
 
 body {
     margin: 0;
-    padding-left: $body-padding;
-    padding-right: $body-padding;
+   @include body-padding;
     * {
         font-family: 'Work Sans', 'Roboto', sans-serif;
     }
 }
-label,#copy-icon,button  {
+label,#copy-icon,button,#reset-button  {
     cursor: pointer;
 }
 .italic {
@@ -27,14 +27,15 @@ h1 {
     user-select: none;
     margin-bottom: 0;
     margin-top: 1.5rem;
-    margin-left: -1 * $body-padding;
-    margin-right: -1 * $body-padding;
+    @include full-width;
     @media screen and (max-width:1000px) {
         font-size: 3rem;
     }
     @media screen and (max-width:600px) {
-        font-size: 1.6rem;
-        padding: 0;
+        font-size: 1.8rem;
+    }
+    @media screen and (max-width:400px) {
+        font-size: 1.2rem;
     }
 }
 #error {
@@ -78,6 +79,7 @@ button {
     user-select: all;
     margin: 100px auto;
     margin-bottom: 50px;
+    word-wrap: break-word;
 }
 #output {
     padding: 1rem;
@@ -96,7 +98,10 @@ button {
     transform: scale(1.1);
     transition: none;
 }
-
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
 .row {
     display: flex;
     align-items: start;
