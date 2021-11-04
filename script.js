@@ -232,12 +232,8 @@ $('#reset-button').addEventListener('click',resetPage);
 
 
 function spin(el) {
-    console.log(el);
-    if (el.classList.contains('spinning')) el.classList.remove('spinning');
-    el.classList.add('spinning');
-    setTimeout(()=> {
-        if (el.classList.contains('spinning')) el.classList.remove('spinning');
-    },300)
+    if (el.classList.contains('spun')) el.classList.remove('spun');
+    setTimeout(()=> el.classList.add('spun'),0);
 }
 
 const spinners = $all('.spin');
