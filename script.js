@@ -110,8 +110,8 @@ function getFormatSuffix(format,fontName) {
     return '';
 }
 function getFontUrl(font,format,disableSuffix) {
-    const { name, fileName, prefix,styleSeparator: separator, fontStyle } = font;
-    return `url('${parsePrefix(prefix, font)}${fileName}${fontStyle ? separator + (styleLowercaseCheckbox.checked ? fontStyle.toLowerCase() :fontStyle) : ''}.${format}${disableSuffix ? '' : getFormatSuffix(format,name)}') format('${getFormatName(format)}')`;
+    const { name, fileName, prefix,styleSeparator: separator, fontStyle,fontWeight } = font;
+    return `url('${parsePrefix(prefix, font)}${fileName+fontWeight}${fontStyle ? separator + (styleLowercaseCheckbox.checked ? fontStyle.toLowerCase() :fontStyle) : ''}.${format}${disableSuffix ? '' : getFormatSuffix(format,name)}') format('${getFormatName(format)}')`;
 }
 const checkIE9 = (font, formats)=>formats.includes('eot') ? '\n    src: '+getFontUrl(font,'eot',true)+';':'';
 
