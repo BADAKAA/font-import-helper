@@ -100,7 +100,10 @@ function showMessage(message) {
 }
 function parsePrefix(prefix, font) {
     if (!prefix.includes('{')) return prefix;
-    if (prefix.split('{').length > 2 || prefix.split('}').length > 2) return error('The prefix contains too many curly boys.');
+    if (prefix.split('{').length > 2 || prefix.split('}').length > 2) {
+        error('The prefix contains too many curly boys.');
+        return './';
+    }
     return prefix.replace('{name}', font.name);
 }
 
