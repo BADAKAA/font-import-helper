@@ -212,16 +212,17 @@ function restorePreferences() {
 }
 restorePreferences();
 
-separatorInput.addEventListener('input',()=> {
-    console.log($all('.separator-field'));
+function setSeparator(string) {
+    if ((string || string === '') && typeof string === "string") separatorInput.value = string;
     $all('.separator-field').forEach(field=> {
         field.textContent = separatorInput.value;
     })
-})
+}
+separatorInput.addEventListener('input',setSeparator);
 function resetPage() {
     nameInput.value = '';
     fileNameInput.value = '';
-    separatorInput.value = '';
+    setSeparator('');
     prefixInput.value = './fonts/{name}/';
 }
 $('#reset-button').addEventListener('click',resetPage);
