@@ -164,7 +164,7 @@ form {
   position: relative;
 }
 form > * {
-  flex: 1 1 300px;
+  flex: 1 1 200px;
 }
 form button {
   color: white;
