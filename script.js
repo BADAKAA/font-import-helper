@@ -101,7 +101,7 @@ function showMessage(message) {
 function parsePrefix(prefix, font) {
     if (!prefix.includes('{')) return prefix;
     if (prefix.split('{').length > 2 || prefix.split('}').length > 2) return error('The prefix contains too many curly boys.');
-    return prefix.replace('{name}', font.fileName);
+    return prefix.replace('{name}', font.name);
 }
 
 function getFormatSuffix(format,fontName) {
@@ -138,7 +138,7 @@ function updateOutput() {
         fonts.push(
             {
                 name: nameInput.value,
-                fileName: fileNameInput.value,
+                fileName: fileLowercaseCheckbox.checked && fileNameInput.value ? fileNameInput.value.toLowerCase() : fileNameInput.value,
                 prefix: prefixInput.value,
                 formats: getFormats(),
                 fontWeight:getWeight(fontType),
@@ -182,7 +182,9 @@ syncNameCheckbox.addEventListener('change',() => {
     syncFileName=value;
     document.cookie = 'syncNames='+value;
 });
-fileLowercaseCheckbox.addEventListener('change',()=>document.cookie = 'lowercase='+fileLowercaseCheckbox.checked)
+fileLowercaseCheckbox.addEventListener('change',()=>document.cookie = 'fileLowercase='+fileLowercaseCheckbox.checked);
+styleLowercaseCheckbox.addEventListener('change',()=>document.cookie = 'styleLowercase='+styleLowercaseCheckbox.checked);
+
 function fontNameChange() {
     if (!syncFileName) return;
     let parsedName =  nameInput.value.replace(" ", "-");
@@ -204,6 +206,15 @@ function restorePreferences() {
         syncNameCheckbox.checked = syncPreference;
         syncFileName = syncPreference;
     }
-    if (getCookie('lowercase') !== undefined) fileLowercaseCheckbox.checked = parseBool(getCookie('lowercase'));
+    if (getCookie('fileLowercase') !== undefined) fileLowercaseCheckbox.checked = parseBool(getCookie('fileLowercase'));
+    if (getCookie('styleLowercase') !== undefined) styleLowercaseCheckbox.checked = parseBool(getCookie('styleLowercase'));
+
 }
 restorePreferences();
+
+separatorInput.addEventListener('input',()=> {
+    console.log($all('.separator-field'));
+    $all('.separator-field').forEach(field=> {
+        field.textContent = separatorInput.value;
+    })
+})
