@@ -52,7 +52,7 @@ const styleLowercaseCheckbox = $('#style-lowercase');
 const prefixInput = $('#prefix');
 const separatorInput = $('#separator');
 const formatInputs = $all('.format');
-const weightInputs = $all('.weight');
+const typeInputs = $all('.weight');
 
 const outputElement = $('#output')
 
@@ -68,11 +68,11 @@ function getFormats() {
     return formats;
 }
 function getFontTypes() {
-    const weights = [];
-    for (const input of weightInputs) {
-        if (input.checked) weights.push(input.id);
+    const types = [];
+    for (const input of typeInputs) {
+        if (input.checked) types.push(input.id);
     }
-    return weights;
+    return types;
 }
 
 function isValid(font) {
@@ -124,6 +124,7 @@ const getStyle = (fontType) => fontType && fontType.includes("-") ? fontType.spl
 
 function updateOutput() {
     const fonts = [];
+    if (getFontTypes().length < 1) error("No weights selected.");
     for(const fontType of getFontTypes()) {
         fonts.push(
             {
