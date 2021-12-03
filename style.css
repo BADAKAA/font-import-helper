@@ -263,6 +263,10 @@ label, #copy-icon, button, #reset-button {
   cursor: pointer;
 }
 
+i {
+  user-select: none;
+}
+
 .italic {
   font-style: italic;
 }
