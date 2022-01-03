@@ -12,8 +12,8 @@ interface font {
 
 const weightNumbers = {
     ExtraLight:100,
-    Light:200,
-    Thin:300,
+    Thin:200,
+    Light:300,
     Regular:400,
     Medium:500,
     SemiBold:600,
