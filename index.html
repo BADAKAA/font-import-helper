@@ -5,15 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Font Import Helper</title>
-    
-    <link rel="stylesheet" href="./style.css">
-    <link rel="shortcut icon" href="favicon.svg" type="image/svg">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 
 </head>
@@ -168,7 +160,7 @@
                 <span class="checkmark"></span>
             </label>
         </div>
-        <div>
+        <div style="max-width:max-content">
             <h2>Formats</h2>
             <label class="check">
                 .woff
@@ -193,6 +185,34 @@
             <label class="check">
                 .eot
                 <input type="checkbox" class="format" id="eot">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div id="display-types" style="max-width:max-content">
+            <h2>Display</h2>
+            <label class="check">
+                swap
+                <input type="radio" checked class="format" name="display" id="swap"  value="swap">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                auto
+                <input type="radio" class="format" name="display" id="auto" value="auto">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                block
+                <input type="radio" class="format" name="display" id="block" value="block">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                fallback
+                <input type="radio" class="format" name="display" id="fallback" value="fallback">
+                <span class="checkmark"></span>
+            </label>
+            <label class="check">
+                optional
+                <input type="radio" class="format" name="display" id="optional" value="optional">
                 <span class="checkmark"></span>
             </label>
         </div>

@@ -6,7 +6,8 @@ interface font {
     styleSeperator?:string,
     fileName:string,
     fontWeight?:string,
-    fontStyle?:string
+    fontStyle?:string,
+    fontDisplay?:string
 }
 */
 
@@ -55,8 +56,8 @@ const prefixInput = $('#prefix');
 const separatorInput = $('#separator');
 const formatInputs = $all('.format');
 const typeInputs = $all('.weight');
-
-const outputElement = $('#output')
+const displayInputs = $all('#display-types input')
+const outputElement = $('#output');
 
 
 const copyIcon = $('#copy-icon');
@@ -75,6 +76,12 @@ function getFontTypes() {
         if (input.checked) types.push(input.id);
     }
     return types;
+}
+
+function getDisplay() {
+    for (const input of displayInputs) {
+        if (input.checked) return input.value;
+    }
 }
 
 function isValid(font) {
@@ -119,10 +126,11 @@ function getFontUrl(font,format,disableSuffix) {
 const checkIE9 = (font, formats)=>formats.includes('eot') ? '\n    src: '+getFontUrl(font,'eot',true)+';':'';
 
 function getImport(font) {
-    const { name, formats, fontStyle, fontWeight } = font;
+    const { name, formats, fontStyle, fontDisplay, fontWeight } = font;
     let output = `@font-face {
     font-family: '${name}';
     font-style: '${fontStyle ? fontStyle.toLowerCase() : 'normal'}';
+    font-display: ${fontDisplay ? fontDisplay.toLowerCase() : 'auto'}
     font-weight: ${fontWeight && weightNumbers[fontWeight] ? weightNumbers[fontWeight] : "'regular'"};${checkIE9(font,formats)}
     src: local(''),`
     for (const format of formats) {
@@ -146,6 +154,7 @@ function updateOutput() {
                 formats: getFormats(),
                 fontWeight:getWeight(fontType),
                 fontStyle: getStyle(fontType),
+                fontDisplay: getDisplay(),
                 styleSeparator:separatorInput.value
             }
         )

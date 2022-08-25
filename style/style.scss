@@ -1,8 +1,9 @@
 @use 'variables' as *;
-@use 'checkbox';
-@use 'input';
-@use 'form';
-@use 'animations';
+@import 'animations';
+@import 'checkbox';
+@import 'input';
+@import 'form';
+@import 'fonts';
 
 body {
     margin: 0;
